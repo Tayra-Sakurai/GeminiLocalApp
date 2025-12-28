@@ -47,7 +47,7 @@ namespace GeminiLocalApp
             contents.Add(content);
             // The response.
             GenerateContentResponse response = await client.Models.GenerateContentAsync(
-                "gemini-2.5-flash-lite",
+                "gemini-3.0-flash-preview",
                 contents
             );
             if (response.Candidates != null)

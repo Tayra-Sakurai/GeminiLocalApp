@@ -15,7 +15,7 @@ using Windows.Foundation.Collections;
 using Google.GenAI;
 using Google.GenAI.Types;
 using System.Threading.Tasks;
-using System.Text.Json;
+using Markdig;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -63,13 +63,21 @@ namespace GeminiLocalApp
                     Text = SuperPrompt.Text
                 }
             };
-            Superresponse.Text = string.Empty;
-            await foreach (var chunk in chat.SendMessageStream(content))
+            await SuperResponse.EnsureCoreWebView2Async();
+            Content responseContent = await chat.SendMessage(content);
+            if (responseContent.Parts != null)
             {
-                if (chunk.Parts != null)
+                Part part = responseContent.Parts[0];
+                if (part.Text != null)
                 {
-                    Part part = chunk.Parts[0];
-                    Superresponse.Text += part.Text;
+                    // The raw result.
+                    string text = part.Text;
+                    // The rendered HTML
+                    string htmlText = Markdown.ToHtml(text);
+                    if (SuperResponse.CoreWebView2 != null)
+                    {
+                        SuperResponse.CoreWebView2.NavigateToString(htmlText);
+                    }
                 }
             }
         }

@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google.GenAI" Version="0.9.0" />
+    <PackageReference Include="Markdig" Version="0.44.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7175" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
   </ItemGroup>
@@ -34,8 +35,8 @@
     <PackageReleaseNotes>Created prototype.</PackageReleaseNotes>
     <Version>$(VersionPrefix)</Version>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <AssemblyVersion>1.0.0.0 dev</AssemblyVersion>
-    <FileVersion>1.0.0.0 dev</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
