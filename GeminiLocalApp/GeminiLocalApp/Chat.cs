@@ -52,11 +52,12 @@ namespace GeminiLocalApp
             );
             if (response.Candidates != null)
             {
-                List<Candidate> candidates = response.Candidates;
-                if (candidates[0].Content != null)
+                Candidate candidate = response.Candidates[0];
+                if (candidate.Content != null)
                 {
-                    contents.Add(candidates[0].Content);
-                    return candidates[0].Content;
+                    Content content1 = candidate.Content;
+                    contents.Add (content1);
+                    return content1;
                 }
             }
             throw new Exception("Unexpected Error.");
