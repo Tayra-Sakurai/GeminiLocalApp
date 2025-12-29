@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace GeminiLocalApp
             contents.Add(content);
             // The response.
             GenerateContentResponse response = await client.Models.GenerateContentAsync(
-                "gemini-3.0-flash-preview",
+                "gemini-2.5-flash-lite",
                 contents
             );
             if (response.Candidates != null)
@@ -63,7 +64,7 @@ namespace GeminiLocalApp
             throw new Exception("Unexpected Error.");
         }
 
-        public async IAsyncEnumerable<Content> SendMessageStream (Content content)
+        public async IAsyncEnumerable<Content> SendMessageStream(Content content)
         {
             contents.Add(content);
             await foreach (var chunk in client.Models.GenerateContentStreamAsync(
@@ -81,6 +82,7 @@ namespace GeminiLocalApp
                     }
                 }
             }
+
         }
 
         /// <summary>

@@ -45,15 +45,7 @@ namespace GeminiLocalApp
         /// </summary>
         /// <param name="sender">The source of the event, typically the Send button.</param>
         /// <param name="e">The event data associated with the Click event.</param>
-        private void SendBtn_Click (object sender, RoutedEventArgs e)
-        {
-            RespondAsync();
-        }
-
-        /// <summary>
-        /// This is the sending function.
-        /// </summary>
-        private async Task RespondAsync()
+        private async void SendBtn_Click (object sender, RoutedEventArgs e)
         {
             Content content = new Content();
             content.Role = "user";
@@ -64,6 +56,7 @@ namespace GeminiLocalApp
                 }
             };
             await SuperResponse.EnsureCoreWebView2Async();
+            // The AI's response.
             Content responseContent = await chat.SendMessage(content);
             if (responseContent.Parts != null)
             {
