@@ -64,6 +64,16 @@ namespace GeminiLocalApp
             throw new Exception("Unexpected Error.");
         }
 
+        /// <summary>
+        /// Streams generated content in response to the specified input message using the Gemini 2.5 Flash Lite model.
+        /// </summary>
+        /// <remarks>Each yielded content chunk represents a partial or complete response from the model.
+        /// The method appends each generated content chunk to the ongoing conversation context, allowing for multi-turn
+        /// interactions. Callers should enumerate the returned stream asynchronously to receive content as it becomes
+        /// available.</remarks>
+        /// <param name="content">The input message to send as the initial prompt for content generation. Cannot be null.</param>
+        /// <returns>An asynchronous stream of generated content chunks, each representing a portion of the model's response. The
+        /// stream completes when the model has finished generating content.</returns>
         public async IAsyncEnumerable<Content> SendMessageStream(Content content)
         {
             contents.Add(content);
